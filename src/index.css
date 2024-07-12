@@ -117,6 +117,48 @@ body {
   color: white;
   font-weight: bold;
 }
+.date-picker {
+  font-size: 19px;
+}
+.date-selector {
+  padding: 7px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+.unit-input {
+  font-size: 19px;
+}
+.unit-selector{
+  padding: 7px;
+  margin-left: 5px;
+}
+.add-exercise {
+  background-color: rgb(152, 34, 34);
+  border: none;
+  font-size: 17px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.log-workout {
+  background-color: rgb(5, 85, 17);
+  border: none;
+  font-size: 17px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 .workout-logger {
   display: flex;
   flex-direction: column;
@@ -125,4 +167,39 @@ body {
 .reps-weight {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  width: 200px
+}
+.add-set {
+  background-color: rgb(5, 85, 17);
+  border: none;
+  font-size: 13px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+.delete-set {
+  background-color: rgb(152, 34, 34);
+  border: none;
+  font-size: 13px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-weight: bold;
+  margin-left: 3px;
+}
+.workout-logs {
+  display: flex;
+
+}
+.workout-log {
+  margin-right: 80px;
 }

@@ -5,6 +5,7 @@ function Workout() {
   const [date, setDate] = useState('');
   const [exercises, setExercises] = useState([]);
   const [loggedWorkouts, setLoggedWorkouts] = useState([]);
+  const [unit, setUnit] = useState('lbs');
 
   const addExercise = () => {
     setExercises([
@@ -69,13 +70,21 @@ function Workout() {
   return (
     <div className="workout-logger">
       <h1>Log Your Workout</h1>
-      <label>
-        Date:
+      <label className='date-picker'>
+        Date: 
         <input
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
+          className='date-selector'
         />
+      </label>
+      <label className='unit-input'>
+        Unit:
+        <select className='unit-selector' value={unit} onChange={(e) => setUnit(e.target.value)}>
+          <option value="lbs">lbs</option>
+          <option value="kgs">kgs</option>
+        </select>
       </label>
       <h2>Add Exercises</h2>
       {exercises.map((exercise, exerciseIndex) => (
@@ -108,10 +117,13 @@ function Workout() {
                   onChange={(event) => handleSetChange(exerciseIndex, setIndex, event)}
                 />
               </label>
-              <button onClick={() => deleteSet(exerciseIndex, setIndex)}>Delete Set</button>
+              <button className='delete-set' onClick={() => deleteSet(exerciseIndex, setIndex)}>Delete Set</button>
             </div>
           ))}
-          <button onClick={() => addSet(exerciseIndex)}>Add Set</button>
+          <div>
+            <button className='add-set' onClick={() => addSet(exerciseIndex)}>Add Set</button>
+          </div>
+          
         </div>
       ))}
       <div>
@@ -128,12 +140,12 @@ function Workout() {
             <h3>{workout.date}</h3>
             {workout.exercises.map((exercise, exerciseIndex) => (
               <div key={exerciseIndex}>
-                <h4>{exercise.name}</h4>
+                <h4>Exercise #{exerciseIndex+ 1}: {exercise.name}</h4>
                 {exercise.sets.map((set, setIndex) => (
                   <div key={setIndex} className="reps-weight">
                     <p>Set: {setIndex + 1}</p>
                     <p>Reps: {set.reps}</p>
-                    <p>Weight: {set.weight}</p>
+                    <p>Weight: {set.weight} {workout.unit}</p>
                   </div>
                 ))}
               </div>
