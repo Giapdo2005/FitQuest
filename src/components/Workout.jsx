@@ -1,7 +1,9 @@
 import '../index.css';
 import { useState } from 'react';
+import axios from 'axios';
 
 function Workout() {
+  const [user_id, setUserId] = useState(1);
   const [date, setDate] = useState('');
   const [exercises, setExercises] = useState([]);
   const [loggedWorkouts, setLoggedWorkouts] = useState([]);
@@ -62,9 +64,19 @@ function Workout() {
   };
 
   const submitWorkout = () => {
-    setLoggedWorkouts([...loggedWorkouts, { date, exercises }]);
-    setExercises([]);
-    setDate('');
+    const workoutData = { user_id, date, exercises };
+    console.log('Submitting workout data:', workoutData);
+
+    axios.post('http://localhost:5000/api/workouts', workoutData)
+      .then(response => {
+        console.log('Workout logged successfully:', response.data);
+        setLoggedWorkouts([...loggedWorkouts, workoutData]);
+        setExercises([]);
+        setDate('');
+      })
+      .catch(error => {
+        console.error('Error logging workout:', error);
+      });
   };
 
   return (

@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useState, useEffect } from 'react'
 import Auth from './components/Auth.jsx';
 import Navbar from './components/Navbar.jsx';
 import SignUp from './components/Signup.jsx';
@@ -10,11 +11,11 @@ function App() {
   return (
     <div>
       {location.pathname !== '/auth' && location.pathname !== '/signup' && location.pathname !== '/login' && <Navbar />}
-      <Workout />
       <Routes>
         <Route path="/auth" element={<Auth />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/workout" element={<Workout/>}/>
       </Routes>
     </div>
   )
