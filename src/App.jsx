@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { useState, useEffect } from 'react'
 import Auth from './components/Auth.jsx';
 import Navbar from './components/Navbar.jsx';
 import SignUp from './components/Signup.jsx';
@@ -8,6 +7,8 @@ import Workout from "./components/Workout.jsx";
 
 
 function App() {
+  const location = useLocation();
+
   return (
     <div>
       {location.pathname !== '/auth' && location.pathname !== '/signup' && location.pathname !== '/login' && <Navbar />}

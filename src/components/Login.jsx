@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from './firebase'; 
 import { useNavigate } from 'react-router-dom';
+import '../auth.css'
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -22,24 +23,27 @@ function Login() {
 
   return (
     <div className='login-container'>
-      <form onSubmit={handleLogin}>
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input 
-          type="password" 
-          name="password" 
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {error && <p className='error-message'>{error}</p>}
-        <button className='login-btn' type="submit">Login</button>
-      </form>
+      <div className='box-container'>
+        <h2>LOGIN</h2>
+        <form onSubmit={handleLogin}>
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input 
+            type="password" 
+            name="password" 
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {error && <p className='error-message'>{error}</p>}
+          <button className='login-btn' type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -21,6 +21,7 @@ body {
   justify-content: center;
   height: 100vh;
   text-align: center;
+  background-color: antiquewhite;
 }
 
 .container div {
@@ -36,76 +37,6 @@ body {
 }
 
 .container button {
-  background-color: rgb(152, 34, 34);
-  border: none;
-  font-size: 19px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
-}
-.signup-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-  background-color: antiquewhite;
-}
-
-.signup-container input {
-  margin-bottom: 20px;
-  font-size: 20px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  padding-left: 10px;
-  min-width: 300px;
-  border-radius: 100px;
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.2s ease-in-out;
-}
-.signup-container input:hover {
-  transform: translateY(-5px); 
-}
-.signup-btn {
-  background-color: rgb(152, 34, 34);
-  border: none;
-  font-size: 19px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
-}
-.login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-  background-color: antiquewhite;
-}
-.login-container input {
-  margin-bottom: 20px;
-  font-size: 20px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  padding-left: 10px;
-  min-width: 300px;
-  border-radius: 100px;
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.2s ease-in-out;
-}
-.login-btn {
   background-color: rgb(152, 34, 34);
   border: none;
   font-size: 19px;
