@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from './firebase'; 
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../auth.css'
 
 function Login() {
@@ -14,6 +15,10 @@ function Login() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      console.log(email);
+      const response = await axios.get(`http://localhost:5000/api/user/${email}`);
+      const userData = response.data;
+      localStorage.setItem('user', JSON.stringify(userData));
       alert('Logged in successfully!');
       navigate('/workout')
     } catch (error) {
