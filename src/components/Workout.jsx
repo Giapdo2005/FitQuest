@@ -1,21 +1,22 @@
 import '../index.css';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Workout() {
   const [user, setUser] = useState(null)
-  const [user_id, setUserId] = useState(1);
   const [date, setDate] = useState('');
   const [exercises, setExercises] = useState([]);
   const [loggedWorkouts, setLoggedWorkouts] = useState([]);
   const [unit, setUnit] = useState('lbs');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const userData = JSON.parse(storedUser);
       setUser(userData);
-      setUserId(userData.email); // Assuming you want to use email as user_id
+      fetchWorkouts(userData.email);
     }
   }, []);
 
@@ -78,27 +79,47 @@ function Workout() {
   };
 
   const submitWorkout = () => {
-    const workoutData = { user_id, date, exercises };
-    console.log('Submitting workout data:', workoutData);
-
-    axios.post('http://localhost:5000/api/workouts', workoutData)
-      .then(response => {
-        console.log('Workout logged successfully:', response.data);
-        setLoggedWorkouts([...loggedWorkouts, workoutData]);
-        setExercises([]);
-        setDate('');
-      })
-      .catch(error => {
-        console.error('Error logging workout:', error);
-      });
+    if (user) {
+      const workoutData = { email: user.email, date, exercises};
+      console.log(exercises);
+      console.log(user.email);
+      console.log('Submitting workout data:', workoutData);
+  
+      axios.post('http://localhost:5000/api/workouts', workoutData)
+        .then(response => {
+          console.log('Workout logged successfully:', response.data);
+          setLoggedWorkouts([...loggedWorkouts, workoutData]);
+          setExercises([]);
+          setDate('');
+        })
+        .catch(error => {
+          console.error('Error logging workout:', error);
+        });
+    } else {
+      console.error
+    }
   };
 
+  const fetchWorkouts = (email) => {
+    axios.get(`http://localhost:5000/api/workouts/${email}`)
+      .then(response => {
+        console.log('Fetched workouts:', response.data);
+        setLoggedWorkouts(response.data)
+      })
+      .catch(error => {
+        console.error('Error fetching workouts:', error);
+      });
+  }
+
+  const logout = () => {
+    navigate('/auth');
+  }
   return (
     <div>
       <nav className="navbar">
         <div>Welcome {user ? getFirstName(user.full_name) : ''} </div>
         <div>Fitness Tracking</div>
-        <div>Logout</div>
+        <a className='logout' onClick={logout}>Logout</a>
       </nav>
       <div className="workout-logger">
         <h1>Log Your Workout</h1>
@@ -172,7 +193,7 @@ function Workout() {
               <h3>{workout.date}</h3>
               {workout.exercises.map((exercise, exerciseIndex) => (
                 <div key={exerciseIndex}>
-                  <h4>Exercise #{exerciseIndex+ 1}: {exercise.name}</h4>
+                  <h4>Exercise #{exerciseIndex+ 1}: {exercise.exercise_name}</h4>
                   {exercise.sets.map((set, setIndex) => (
                     <div key={setIndex} className="reps-weight">
                       <p>Set: {setIndex + 1}</p>

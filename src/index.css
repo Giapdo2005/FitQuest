@@ -35,6 +35,13 @@ body {
 .or {
   font-size: 19px;
 }
+.logout {
+  color: white;
+  text-decoration: none;
+}
+.logout:hover {
+  text-decoration: underline;
+}
 
 .container button {
   background-color: rgb(152, 34, 34);
